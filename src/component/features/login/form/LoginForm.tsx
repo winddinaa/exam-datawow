@@ -9,7 +9,6 @@ import { requestLogin } from "@/reduxs/auth/authSlice";
 const LoginForm = () => {
   const dispatch: AppDispatch = useDispatch();
   const authData = useSelector((state: any) => state.auth);
-  console.log("=>authData", authData);
   const filedLogin = useMemo(
     () => [
       {
@@ -39,7 +38,6 @@ const LoginForm = () => {
         <Formik
           initialValues={{ username: "" }}
           onSubmit={(values) => {
-            console.log(values);
             dispatch(requestLogin({ ...apiLogin, data: values })); // Fetch data
           }}
         >

@@ -18,7 +18,6 @@ const initialState: AuthState = {
 export const requestLogin = createAsyncThunk(
   "api/login",
   async (option: IoptionAPI) => {
-    console.log("=>option", option);
     const data = await apiRequest(option);
 
     return data;

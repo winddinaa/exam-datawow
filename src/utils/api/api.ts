@@ -12,7 +12,6 @@ const apiClient = axios.create({
 export const apiRequest = async (option: IoptionAPI) => {
   try {
     const response = await apiClient(option);
-    console.log("=>response", response);
     return response.data;
   } catch (error) {
     throw new Error(`Error with ${option.method} request: ${error}`);
