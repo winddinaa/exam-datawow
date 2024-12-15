@@ -33,6 +33,11 @@ export default {
       },
       fontFamily: {
         castoro: ["Castoro", "serif"],
+        inter: ["Inter", "sans-serif"],
+      },
+      fontSize: {
+        xl: "28px",
+        lg: "24px",
       },
     },
   },
