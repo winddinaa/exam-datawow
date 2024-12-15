@@ -1,14 +1,18 @@
-import { AppDispatch } from "@/app/store";
-import TextInput from "@/component/Input/TextInput";
+"use client";
+
 import React, { useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { Formik, Form } from "formik";
+import { useRouter } from "next/navigation";
+
 import Button from "@/component/common/Button";
 import { requestLogin } from "@/reduxs/auth/authSlice";
+import { AppDispatch } from "@/app/store";
+import TextInput from "@/component/Input/TextInput";
 
 const LoginForm = () => {
   const dispatch: AppDispatch = useDispatch();
-
+  const router = useRouter();
   const filedLogin = useMemo(
     () => [
       {
@@ -37,8 +41,9 @@ const LoginForm = () => {
       <div className="w-[90%] lg:w-[70%] p-[5%] ">
         <Formik
           initialValues={{ username: "" }}
-          onSubmit={(values) => {
-            dispatch(requestLogin({ ...apiLogin, data: values })); // Fetch data
+          onSubmit={async (values) => {
+            await dispatch(requestLogin({ ...apiLogin, data: values }));
+            router.push("/");
           }}
         >
           {({ values }) => (
