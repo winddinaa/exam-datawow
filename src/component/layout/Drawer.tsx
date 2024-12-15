@@ -50,7 +50,7 @@ export default function Drawer({
                         <div className="flex items-center space-x-3">
                           <img
                             className="inline-block size-10 "
-                            src="/Iconhome.svg"
+                            src="/Iconhomemobile.svg"
                             alt=""
                           />
                           <p className="text-sm text-brand-base-white">Home</p>
@@ -58,7 +58,7 @@ export default function Drawer({
                         <div className="flex items-center space-x-3">
                           <img
                             className="inline-block size-10 "
-                            src="/Iconedit.svg"
+                            src="/Iconeditmobile.svg"
                             alt=""
                           />
                           <p className="text-sm text-brand-base-white">
