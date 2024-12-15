@@ -1,31 +1,34 @@
 import type { Config } from "tailwindcss";
 
 export default {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./src/**/*.{js,ts,jsx,tsx}",
-    // รวมไฟล์ทั้งหมดที่ใช้ Tailwind CSS เช่น app, pages, หรือ components
-  ],
+  content: ["./src/**/*.{js,ts,jsx,tsx}", "./app/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      width: {
+        "44vw": "44vw",
+        "56vw": "56vw",
+      },
+      height: {
+        "44vh": "44vh",
+      },
       colors: {
         brand: {
           green: {
-            500: "#1F3D32",
-            300: "#2F5E49",
-            100: "#E0F0E8",
+            500: "#243831",
+            300: "#2B5F44",
+            100: "#D8E9E4",
           },
-          golden: "#C19A5B",
+          golden: "#C5A365",
           grey: {
-            100: "#C4C9C7",
-            300: "#8F9291",
+            100: "#BBC2C0",
+            300: "#939494",
           },
           base: {
             black: "#000000",
             white: "#FFFFFF",
-            text: "#1A1A1A",
+            text: "#191919",
           },
-          success: "#4BA35F",
+          success: "#49A569",
         },
       },
     },
