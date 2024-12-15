@@ -31,6 +31,9 @@ export default {
           success: "#49A569",
         },
       },
+      fontFamily: {
+        castoro: ["Castoro", "serif"],
+      },
     },
   },
   plugins: [],
