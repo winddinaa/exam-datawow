@@ -22,7 +22,7 @@ const TitleLogin = () => {
         height={100}
         className="max-w-[200] min-w-[150] w-[50%] h-auto object-cover lg:max-w-[300]"
       />
-      <p className="font-castoro text-lg font-normal italic text-white mt-5 lg:text-xl">
+      <p className="font-castoro text-lg font-normal italic text-brand-base-white mt-5 lg:text-xl">
         a Board
       </p>
     </div>

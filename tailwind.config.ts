@@ -38,6 +38,8 @@ export default {
       fontSize: {
         xl: "28px",
         lg: "24px",
+        md: "20px",
+        sm: "16px",
       },
     },
   },

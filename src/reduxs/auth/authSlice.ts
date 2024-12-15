@@ -7,10 +7,12 @@ interface AuthState {
   token?: string;
   loading: boolean;
   error?: string;
+  username?: string;
 }
 
 const initialState: AuthState = {
   token: "",
+  username: "",
   loading: false,
   error: "",
 };
@@ -19,7 +21,8 @@ export const requestLogin = createAsyncThunk(
   "api/login",
   async (option: IoptionAPI) => {
     const data = await apiRequest(option);
-
+    localStorage.setItem("token", data.access_token);
+    localStorage.setItem("username", data.username);
     return data;
   }
 );
@@ -35,7 +38,6 @@ const authSlice = createSlice({
       })
       .addCase(requestLogin.fulfilled, (state, action) => {
         state.loading = false;
-        state.token = action.payload;
       })
       .addCase(requestLogin.rejected, (state, action) => {
         state.loading = false;
