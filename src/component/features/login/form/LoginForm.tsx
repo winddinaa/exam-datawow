@@ -1,15 +1,15 @@
-import { RootState } from "@/app/store";
+import { AppDispatch } from "@/app/store";
 import TextInput from "@/component/Input/TextInput";
-import React, { useMemo } from "react";
-import { useSelector } from "react-redux";
-import { Formik, Field, FieldArray, Form } from "formik";
+import React, { useEffect, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Formik, Form } from "formik";
 import Button from "@/component/common/Button";
+import { requestLogin } from "@/reduxs/auth/authSlice";
 
 const LoginForm = () => {
-  const isLargeScreen = useSelector(
-    (state: RootState) => state.screenSize.isLargeScreen
-  );
-
+  const dispatch: AppDispatch = useDispatch();
+  const authData = useSelector((state: any) => state.auth);
+  console.log("=>authData", authData);
   const filedLogin = useMemo(
     () => [
       {
@@ -20,6 +20,14 @@ const LoginForm = () => {
     ],
     []
   );
+
+  const apiLogin: {
+    method: string;
+    url: string;
+  } = {
+    method: "POST",
+    url: "users/login",
+  };
 
   return (
     <div
@@ -32,6 +40,7 @@ const LoginForm = () => {
           initialValues={{ username: "" }}
           onSubmit={(values) => {
             console.log(values);
+            dispatch(requestLogin({ ...apiLogin, data: values })); // Fetch data
           }}
         >
           {({ values }) => (
