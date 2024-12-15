@@ -17,7 +17,7 @@ const TextInput = ({
         type="text"
         id={name}
         name={name}
-        className="text-white px-4 py-2 rounded-[8px]"
+        className="text-brand-base-black px-4 py-2 rounded-[8px]"
         {...rest}
       />
       <ErrorMessage name={name} component="div" />

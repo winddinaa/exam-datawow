@@ -29,13 +29,13 @@ const LoginForm = () => {
     >
       <div className="w-[90%] lg:w-[70%] p-[5%] ">
         <Formik
-          initialValues={{ username: undefined }}
+          initialValues={{ username: "" }}
           onSubmit={(values) => {
             console.log(values);
           }}
         >
           {({ values }) => (
-            <>
+            <Form>
               <p className="font-inter text-lg font-normal italic text-white mb-5 lg:text-xl">
                 Sign in
               </p>
@@ -43,9 +43,9 @@ const LoginForm = () => {
                 {filedLogin.map(({ Component, ...rest }) => (
                   <Component {...rest} key={rest.name} />
                 ))}
-                <Button></Button>
+                <Button type="submit" title="Sign in"></Button>
               </div>
-            </>
+            </Form>
           )}
         </Formik>
       </div>
