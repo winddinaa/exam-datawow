@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const Sidebar = () => {
@@ -15,7 +16,7 @@ const Sidebar = () => {
           </p>
         </div>
         <div className="flex items-center space-x-3">
-          <img
+          <Image
             className="inline-block size-10  text-brand-green-500 "
             src="/Iconedit.svg"
             alt=""

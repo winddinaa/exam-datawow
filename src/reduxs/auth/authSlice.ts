@@ -1,7 +1,7 @@
 // screenSizeSlice.ts
 import { apiRequest } from "@/utils/api/api";
 import { IoptionAPI } from "@/utils/api/api.interface";
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 interface AuthState {
   token?: string;
@@ -36,7 +36,7 @@ const authSlice = createSlice({
       .addCase(requestLogin.pending, (state) => {
         state.loading = true;
       })
-      .addCase(requestLogin.fulfilled, (state, action) => {
+      .addCase(requestLogin.fulfilled, (state) => {
         state.loading = false;
       })
       .addCase(requestLogin.rejected, (state, action) => {
