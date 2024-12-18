@@ -13,6 +13,7 @@ import Modal from "@/component/common/Modal";
 import { setModal } from "@/reduxs/home/homeSlice";
 import CreatePostForm from "./form/CreateForm";
 import { OCommunity } from "@/utils/constants/option";
+import Post from "@/component/content/Post";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -66,6 +67,15 @@ const HomePage = () => {
                   onClick={() => dispatch(setModal(true))}
                 />
               </div>
+            </div>
+            <div className="mt-6">
+              <Post
+                userName="Jessica"
+                category="History"
+                title="The Beginning of the End of the World"
+                description="The afterlife sitcom The Good Place comes to its culmination, the show’s two protagonists, Eleanor and Chidi, contemplate their future. Having lived thousands upon thousands of lifetimes together, and having experienced virtually everything this life has to offer..."
+                commentsCount={32}
+              />
             </div>
           </Form>
         )}
