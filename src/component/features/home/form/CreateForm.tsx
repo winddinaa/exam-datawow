@@ -5,16 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form } from "formik";
 
 import Button from "@/component/common/Button";
-import { AppDispatch, RootState } from "@/app/store";
+import { AppDispatch } from "@/app/store";
 import TextInput from "@/component/Input/TextInput";
 import SelectInput from "@/component/Input/SelectInput";
 import DownIcon from "@/component/icon/downIcon";
 import { OCommunity } from "@/utils/constants/option";
 import TextAreaInput from "@/component/Input/TextAreaInput";
 import { validationSchema } from "./validate";
-import { requestCreatePost, setModal } from "@/reduxs/home/homeSlice";
-import { IoptionAPI } from "@/utils/api/api.interface";
+import { getPost, requestCreatePost, setModal } from "@/reduxs/home/homeSlice";
 import { EStatusCode } from "@/utils/constants/statusCode";
+import { apiCreatePost, apiGetPost } from "@/utils/api/api.constants";
 
 const CreatePostForm = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -49,12 +49,6 @@ const CreatePostForm = () => {
     []
   );
 
-  const apiCreatePost: IoptionAPI = {
-    method: "POST",
-    url: "posts",
-    isAuth: true,
-  };
-
   return (
     <Formik
       initialValues={{ title: "", community: undefined, content: "" }}
@@ -64,6 +58,7 @@ const CreatePostForm = () => {
           requestCreatePost({ ...apiCreatePost, data: values })
         );
         if (result.payload.status === EStatusCode.SUCESS) {
+          dispatch(getPost({ ...apiGetPost }));
           dispatch(setModal(false));
         }
       }}

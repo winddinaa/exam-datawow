@@ -9,6 +9,7 @@ import Button from "@/component/common/Button";
 import { requestLogin } from "@/reduxs/auth/authSlice";
 import { AppDispatch } from "@/app/store";
 import TextInput from "@/component/Input/TextInput";
+import { apiLogin } from "@/utils/api/api.constants";
 
 const LoginForm = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -23,14 +24,6 @@ const LoginForm = () => {
     ],
     []
   );
-
-  const apiLogin: {
-    method: string;
-    url: string;
-  } = {
-    method: "POST",
-    url: "users/login",
-  };
 
   return (
     <div

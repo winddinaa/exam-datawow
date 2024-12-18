@@ -18,7 +18,7 @@ const LayoutComponent = ({
     <div>
       {isLargeScreen ? <NavBar /> : <NavBarMobile />}
       <div
-        className={`flex flex-row bg-brand-grey-100 h-[calc(100vh-60px)] ${
+        className={`flex flex-row bg-brand-grey-100 h-full ${
           isLargeScreen ? "px-0" : "px-[1%]"
         } `}
       >

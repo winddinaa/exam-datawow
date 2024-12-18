@@ -9,7 +9,7 @@ const NavBarWeb = () => {
   const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
   return (
-    <div className="bg-brand-green-500  sticky top-0">
+    <div className="bg-brand-green-500  sticky top-0 z-50">
       <nav className="flex justify-between items-center px-8  h-[60px]">
         <div className="text-lg font-semibold">
           <p className="font-castoro text-lg font-normal italic text-white  lg:text-xl">

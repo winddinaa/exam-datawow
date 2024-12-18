@@ -5,17 +5,17 @@ import React from "react";
 
 interface PostProps {
   userName: string;
-  category: string;
+  community: string;
   title: string;
-  description: string;
+  content: string;
   commentsCount: number;
 }
 
 const Post: React.FC<PostProps> = ({
   userName,
-  category,
+  community,
   title,
-  description,
+  content,
   commentsCount,
 }) => {
   return (
@@ -32,11 +32,11 @@ const Post: React.FC<PostProps> = ({
       </div>
       <div className="flex items-center space-x-2 mb-2">
         <span className="bg-gray-100 text-gray-600 text-sm px-2 py-1 rounded-full">
-          {category}
+          {community}
         </span>
       </div>
       <h2 className="text-lg font-bold text-gray-900 mb-1">{title}</h2>
-      <p className="text-gray-700 text-sm mb-2 line-clamp-2">{description}</p>
+      <p className="text-gray-700 text-sm mb-2 line-clamp-2">{content}</p>
       <div className="text-gray-500 text-sm flex items-center">
         <span>💬 {commentsCount} Comments</span>
       </div>

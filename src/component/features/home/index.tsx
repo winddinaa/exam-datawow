@@ -1,26 +1,37 @@
 "use client";
 
-import React from "react";
+import React, { useCallback } from "react";
 import { Formik, Form } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/app/store";
+import { AppDispatch, RootState } from "@/app/store";
 import TextInput from "@/component/Input/TextInput";
 import SearchIcon from "@/component/icon/searchIcon";
 import SelectInput from "@/component/Input/SelectInput";
 import DownIcon from "@/component/icon/downIcon";
 import Button from "@/component/common/Button";
 import Modal from "@/component/common/Modal";
-import { setModal } from "@/reduxs/home/homeSlice";
+import { getPost, setModal } from "@/reduxs/home/homeSlice";
 import CreatePostForm from "./form/CreateForm";
 import { OCommunity } from "@/utils/constants/option";
 import Post from "@/component/content/Post";
+import { apiGetPost } from "@/utils/api/api.constants";
 
 const HomePage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const isLargeScreen = useSelector(
     (state: RootState) => state.screenSize.isLargeScreen
   );
   const homeReducer = useSelector((state: RootState) => state.home);
+
+  const callGetPost = React.useCallback(async () => {
+    await dispatch(getPost({ ...apiGetPost }));
+  }, []);
+
+  React.useEffect(() => {
+    callGetPost();
+    return () => {};
+  }, []);
+
   return (
     <div className="min-h-screen">
       <Formik
@@ -69,13 +80,18 @@ const HomePage = () => {
               </div>
             </div>
             <div className="mt-6">
-              <Post
-                userName="Jessica"
-                category="History"
-                title="The Beginning of the End of the World"
-                description="The afterlife sitcom The Good Place comes to its culmination, the show’s two protagonists, Eleanor and Chidi, contemplate their future. Having lived thousands upon thousands of lifetimes together, and having experienced virtually everything this life has to offer..."
-                commentsCount={32}
-              />
+              {homeReducer.post.map((itemPost) => {
+                return (
+                  <Post
+                    key={itemPost._id}
+                    userName={itemPost.author.username}
+                    community={itemPost.community}
+                    title={itemPost.title}
+                    content={itemPost.content}
+                    commentsCount={itemPost.comments.length}
+                  />
+                );
+              })}
             </div>
           </Form>
         )}
