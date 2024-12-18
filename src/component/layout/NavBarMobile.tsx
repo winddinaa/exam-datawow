@@ -5,7 +5,7 @@ import Drawer from "./Drawer";
 const NavBarMobile = () => {
   const [openDrawer, setOpenDrawer] = React.useState(false);
   return (
-    <div className="bg-brand-green-500  sticky top-0">
+    <div className="bg-brand-green-500  sticky top-0 z-50">
       <Drawer open={openDrawer} setOpen={setOpenDrawer} />
       <nav className="flex justify-between items-center px-8  h-[60px]">
         <div className="text-lg font-semibold">
