@@ -1,12 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import {
   Dialog,
   DialogBackdrop,
   DialogPanel,
   DialogTitle,
-  TransitionChild,
 } from "@headlessui/react";
 
 type DrawerProps = {

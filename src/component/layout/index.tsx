@@ -17,11 +17,20 @@ const LayoutComponent = ({
   return (
     <div>
       {isLargeScreen ? <NavBar /> : <NavBarMobile />}
-      <div className="flex flex-row bg-brand-grey-100 h-[calc(100vh-60px)]">
-        <div className="w-1/6 px-4 pt-8 sticky top-0">
-          {isLargeScreen && <Sidebar />}
+      <div
+        className={`flex flex-row bg-brand-grey-100 h-[calc(100vh-60px)] ${
+          isLargeScreen ? "px-0" : "px-[1%]"
+        } `}
+      >
+        {isLargeScreen && (
+          <div className="w-1/6 px-4 pt-8 sticky top-0">
+            <Sidebar />
+          </div>
+        )}
+
+        <div className={`${isLargeScreen ? "w-4/6" : "w-full"}  px-4 pt-8 `}>
+          {children}
         </div>
-        <div className="w-4/6  px-4 pt-8 ">{children}</div>
       </div>
     </div>
   );

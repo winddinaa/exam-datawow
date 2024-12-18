@@ -2,6 +2,7 @@
 import React from "react";
 import Button from "../common/Button";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const NavBarWeb = () => {
   const router = useRouter();
@@ -19,9 +20,11 @@ const NavBarWeb = () => {
           {token ? (
             <div className="flex items-center space-x-3">
               <p className="text-md text-brand-base-white">{username}</p>
-              <img
+              <Image
                 className="inline-block size-10 rounded-full ring-2 ring-white"
                 src="/Avatar.png"
+                width={1}
+                height={1}
                 alt=""
               />
             </div>

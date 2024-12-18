@@ -6,9 +6,11 @@ const Sidebar = () => {
     <div className="bg-red">
       <div className="grid grid-cols-1 gap-4 ">
         <div className="flex items-center space-x-3">
-          <img
+          <Image
             className="inline-block size-10  text-brand-green-500"
             src="/Iconhome.svg"
+            width={1}
+            height={1}
             alt=""
           />
           <p className="font-inter font-extrabold text-sm  text-brand-green-500">
@@ -18,6 +20,8 @@ const Sidebar = () => {
         <div className="flex items-center space-x-3">
           <Image
             className="inline-block size-10  text-brand-green-500 "
+            width={1}
+            height={1}
             src="/Iconedit.svg"
             alt=""
           />

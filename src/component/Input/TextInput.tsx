@@ -5,6 +5,8 @@ const TextInput = ({
   name,
   label,
   icon,
+  bgColor = "bg-brand-grey-100",
+  boderColor = "border-brand-green-100",
   ...rest
 }: {
   name: string;
@@ -25,7 +27,7 @@ const TextInput = ({
           type="text"
           id={name}
           name={name}
-          className="block w-full pl-10 pr-4 py-2 border rounded-[8px] text-brand-base-black"
+          className={`block w-full pl-10 pr-4 py-2 border rounded-[8px] text-brand-base-black ${bgColor} border ${boderColor}`}
           {...rest}
         />
       </div>
