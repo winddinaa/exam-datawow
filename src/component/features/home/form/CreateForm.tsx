@@ -12,13 +12,11 @@ import DownIcon from "@/component/icon/downIcon";
 import { OCommunity } from "@/utils/constants/option";
 import TextAreaInput from "@/component/Input/TextAreaInput";
 import { validationSchema } from "./validate";
-import { requestCreatePost } from "@/reduxs/home/homeSlice";
+import { requestCreatePost, setModal } from "@/reduxs/home/homeSlice";
 import { IoptionAPI } from "@/utils/api/api.interface";
+import { EStatusCode } from "@/utils/constants/statusCode";
 
 const CreatePostForm = () => {
-  const isLargeScreen = useSelector(
-    (state: RootState) => state.screenSize.isLargeScreen
-  );
   const dispatch: AppDispatch = useDispatch();
   const filedCreate = useMemo(
     () => [
@@ -62,9 +60,12 @@ const CreatePostForm = () => {
       initialValues={{ title: "", community: undefined, content: "" }}
       validationSchema={validationSchema}
       onSubmit={async (values) => {
-        console.log("=> values", values);
-        await dispatch(requestCreatePost({ ...apiCreatePost, data: values }));
-        // router.push("/");
+        const result = await dispatch(
+          requestCreatePost({ ...apiCreatePost, data: values })
+        );
+        if (result.payload.status === EStatusCode.SUCESS) {
+          dispatch(setModal(false));
+        }
       }}
     >
       {({ values }) => (
