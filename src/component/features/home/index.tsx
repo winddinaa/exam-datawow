@@ -33,7 +33,6 @@ const HomePage = () => {
                 <CreatePostForm />
               </Modal>
 
-              {/* TextInput */}
               <div
                 className={`flex-1 ${isLargeScreen ? " max-w-[80%]" : "justify-between  max-w-[20%]"}`}
               >
@@ -51,23 +50,21 @@ const HomePage = () => {
                 )}
               </div>
 
-              {/* SelectInput and Button */}
               <div
                 className={`flex gap-3 ${isLargeScreen ? "w-[20%]" : "w-full"} justify-end `}
               >
-                <div>
-                  <SelectInput
-                    name="community"
-                    options={OCommunity}
-                    icon={<DownIcon />}
-                  />
-                </div>
-                <div>
-                  <Button
-                    title="Create +"
-                    onClick={() => dispatch(setModal(true))}
-                  />
-                </div>
+                <SelectInput
+                  name="community"
+                  options={OCommunity}
+                  icon={<DownIcon />}
+                  border="border-none"
+                  txtColor="text-brand-base-black"
+                />
+
+                <Button
+                  title="Create +"
+                  onClick={() => dispatch(setModal(true))}
+                />
               </div>
             </div>
           </Form>

@@ -4,13 +4,23 @@ import { Field } from "formik";
 const SelectInput = ({
   name,
   label,
-  options,
+  options = [],
   icon,
+  width,
+  bgColor = "bg-brand-grey-100",
+  border = "border-brand-success", // กำหนดให้ border เป็นสีเขียว
+  txtColor = "text-brand-success", // กำหนดให้ text เป็นสีเขียว
+  values,
 }: {
   name: string;
   label?: string;
-  options: Array<{ value: string; label: string }>;
+  options?: Array<{ value: string; label: string }>;
   icon?: React.ReactNode;
+  width?: string;
+  bgColor?: string;
+  border?: string;
+  txtColor?: string;
+  values?: string;
 }) => {
   return (
     <div className="flex flex-col space-y-2">
@@ -19,10 +29,14 @@ const SelectInput = ({
         <Field
           as="select"
           name={name}
-          className="block w-full pl-4 pr-4 py-2 border rounded-[8px] text-brand-base-black text-sm appearance-none bg-brand-grey-100 border-none min-w-[105px]"
+          className={`block w-full pl-4 pr-4 py-2 border rounded-[8px] text-sm appearance-none ${txtColor} ${bgColor} ${border} min-w-[105px] ${width} focus:outline-none focus:border-green-500`}
         >
           {options.map((option) => (
-            <option key={option.value} value={option.value}>
+            <option
+              key={option.value}
+              value={option.value}
+              className="relative"
+            >
               {option.label}
             </option>
           ))}

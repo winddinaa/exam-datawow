@@ -2,16 +2,24 @@ import axios from "axios";
 import { IoptionAPI } from "./api.interface";
 
 const apiClient = axios.create({
-  baseURL: "http://localhost:8080", // Base URL for the API
+  baseURL: "http://localhost:8080",
   headers: {
     "Content-Type": "application/json",
   },
   withCredentials: true,
 });
 
-// Unified function to handle different HTTP methods
 export const apiRequest = async (option: IoptionAPI) => {
   try {
+    const token = localStorage.getItem("token");
+
+    if (token && option.isAuth) {
+      option.headers = {
+        ...option.headers,
+        Authorization: `Bearer ${token}`,
+      };
+    }
+
     const response = await apiClient(option);
     return response.data;
   } catch (error) {

@@ -1,6 +1,12 @@
 import React from "react";
 
-const DownIcon = ({}: { className?: string; stroke?: string }) => {
+const DownIcon = ({
+  className,
+  stroke = "#191919",
+}: {
+  className?: string;
+  stroke?: string;
+}) => {
   return (
     <svg
       width="13"
@@ -11,7 +17,7 @@ const DownIcon = ({}: { className?: string; stroke?: string }) => {
     >
       <path
         d="M1.26123 0.819824L6.26123 5.81982L11.2612 0.819824"
-        stroke="#191919"
+        stroke={stroke}
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"

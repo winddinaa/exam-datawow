@@ -21,8 +21,8 @@ const NavBarWeb = () => {
             <div className="flex items-center space-x-3">
               <p className="text-md text-brand-base-white">{username}</p>
               <Image
-                className="inline-block size-10 rounded-full ring-2 ring-white"
-                src="/Avatar.png"
+                className="inline-block size-10 rounded-full "
+                src="/Avatar.svg"
                 width={1}
                 height={1}
                 alt=""
