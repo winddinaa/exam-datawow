@@ -19,7 +19,7 @@ const SelectInput = ({
         <Field
           as="select"
           name={name}
-          className="block w-full pl-4 pr-4 py-2 border rounded-[8px] text-brand-base-black text-sm appearance-none bg-brand-grey-100 border-none"
+          className="block w-full pl-4 pr-4 py-2 border rounded-[8px] text-brand-base-black text-sm appearance-none bg-brand-grey-100 border-none min-w-[105px]"
         >
           {options.map((option) => (
             <option key={option.value} value={option.value}>

@@ -1,12 +1,6 @@
 import React from "react";
 
-const DownIcon = ({
-  className,
-  stroke = "#5B5B5B",
-}: {
-  className?: string;
-  stroke?: string;
-}) => {
+const DownIcon = ({}: { className?: string; stroke?: string }) => {
   return (
     <svg
       width="13"

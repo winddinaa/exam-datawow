@@ -48,7 +48,7 @@ const LoginForm = () => {
         >
           {({ values }) => (
             <Form>
-              <p className="font-inter text-lg font-normal italic text-white mb-5 lg:text-xl">
+              <p className="font-inter text-lg font-normal text-white mb-5 lg:text-xl">
                 Sign in
               </p>
               <div className="grid grid-cols-1 gap-4">

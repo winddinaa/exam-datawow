@@ -11,6 +11,8 @@ import DownIcon from "@/component/icon/downIcon";
 import Button from "@/component/common/Button";
 import Modal from "@/component/common/Modal";
 import { setModal } from "@/reduxs/home/homeSlice";
+import CreatePostForm from "./form/CreateForm";
+import { OCommunity } from "@/utils/constants/option";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -19,18 +21,22 @@ const HomePage = () => {
   );
   const homeReducer = useSelector((state: RootState) => state.home);
   return (
-    <div className="min-h-screen  ">
+    <div className="min-h-screen">
       <Formik
         initialValues={{ search: "" }}
         onSubmit={(values) => console.log(values)}
       >
         {() => (
           <Form>
-            <div
-              className={`flex justify-between items-start w-full gap-3 items-center`}
-            >
-              <Modal open={homeReducer.openModal}></Modal>
-              <div className={`${isLargeScreen ? "w-3/5" : "w-1/7"}`}>
+            <div className="flex  items-center gap-3">
+              <Modal open={homeReducer.openModal}>
+                <CreatePostForm />
+              </Modal>
+
+              {/* TextInput */}
+              <div
+                className={`flex-1 ${isLargeScreen ? " max-w-[80%]" : "justify-between  max-w-[20%]"}`}
+              >
                 {isLargeScreen ? (
                   <TextInput
                     name="search"
@@ -45,23 +51,18 @@ const HomePage = () => {
                 )}
               </div>
 
-              <div className="flex gap-3 w-auto">
-                <div className={`${isLargeScreen ? "w-1/2" : "w-3/7"}`}>
+              {/* SelectInput and Button */}
+              <div
+                className={`flex gap-3 ${isLargeScreen ? "w-[20%]" : "w-full"} justify-end `}
+              >
+                <div>
                   <SelectInput
                     name="community"
-                    options={[
-                      { value: "History", label: "History" },
-                      { value: "Food", label: "Food" },
-                      { value: "Pets", label: "Pets" },
-                      { value: "Health", label: "Health" },
-                      { value: "Fashion", label: "Fashion" },
-                      { value: "Exercise", label: "Exercise" },
-                      { value: "Others", label: "Others" },
-                    ]}
+                    options={OCommunity}
                     icon={<DownIcon />}
                   />
                 </div>
-                <div className={`${isLargeScreen ? "w-1/2" : "w-3/7"}`}>
+                <div>
                   <Button
                     title="Create +"
                     onClick={() => dispatch(setModal(true))}
