@@ -2,18 +2,22 @@
 
 import React from "react";
 import { Formik, Form } from "formik";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/app/store";
 import TextInput from "@/component/Input/TextInput";
 import SearchIcon from "@/component/icon/searchIcon";
 import SelectInput from "@/component/Input/SelectInput";
 import DownIcon from "@/component/icon/downIcon";
 import Button from "@/component/common/Button";
+import Modal from "@/component/common/Modal";
+import { setModal } from "@/reduxs/home/homeSlice";
 
 const HomePage = () => {
+  const dispatch = useDispatch();
   const isLargeScreen = useSelector(
     (state: RootState) => state.screenSize.isLargeScreen
   );
+  const homeReducer = useSelector((state: RootState) => state.home);
   return (
     <div className="min-h-screen  ">
       <Formik
@@ -25,7 +29,7 @@ const HomePage = () => {
             <div
               className={`flex justify-between items-start w-full gap-3 items-center`}
             >
-              {/* ด้านซ้าย: TextInput */}
+              <Modal open={homeReducer.openModal}></Modal>
               <div className={`${isLargeScreen ? "w-3/5" : "w-1/7"}`}>
                 {isLargeScreen ? (
                   <TextInput
@@ -41,7 +45,6 @@ const HomePage = () => {
                 )}
               </div>
 
-              {/* ด้านขวา: SelectInput และ Button */}
               <div className="flex gap-3 w-auto">
                 <div className={`${isLargeScreen ? "w-1/2" : "w-3/7"}`}>
                   <SelectInput
@@ -59,7 +62,10 @@ const HomePage = () => {
                   />
                 </div>
                 <div className={`${isLargeScreen ? "w-1/2" : "w-3/7"}`}>
-                  <Button title="Create +" />
+                  <Button
+                    title="Create +"
+                    onClick={() => dispatch(setModal(true))}
+                  />
                 </div>
               </div>
             </div>
