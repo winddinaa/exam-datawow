@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
 import NavBarMobile from "./NavBarMobile";
 import Sidebar from "./Sidebar";
+import { EPage } from "@/utils/constants/common";
 
 const LayoutComponent = ({
   children,
@@ -14,6 +15,9 @@ const LayoutComponent = ({
   const isLargeScreen = useSelector(
     (state: RootState) => state.screenSize.isLargeScreen
   );
+
+  const page = useSelector((state: RootState) => state.page);
+
   return (
     <div>
       {isLargeScreen ? <NavBar /> : <NavBarMobile />}
@@ -28,7 +32,9 @@ const LayoutComponent = ({
           </div>
         )}
 
-        <div className={`${isLargeScreen ? "w-4/6" : "w-full"}  px-4 pt-8 `}>
+        <div
+          className={`${isLargeScreen ? (page.page === EPage.POST_DETAIL ? "w-full" : "w-4/6  px-4 pt-8") : "w-full  px-4 pt-8"}  `}
+        >
           {children}
         </div>
       </div>

@@ -12,7 +12,7 @@ const PostDetails = () => {
   );
   console.log("=> postDetailReducer", postDetailReducer);
   return (
-    <div className="px-4 sm:px-6 lg:px-8 py-8 max-w-4xl mx-auto bg-brand-base-white">
+    <div className=" lg:px-8 py-8   bg-brand-base-white">
       <div className="flex items-center gap-4 mb-6">
         <button className="rounded-full bg-gray-200 p-2 hover:bg-gray-300">
           <svg
