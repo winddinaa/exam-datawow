@@ -6,26 +6,28 @@ import EditPostIcon from "../icon/editPostIcon";
 import DeleteIcon from "../icon/deleteIcon";
 
 interface PostProps {
+  post: Post;
+  border?: string;
+  onEdit?: (e: any) => void;
+  onDelete?: () => void;
+}
+
+interface Post {
   userName: string;
   community: string;
   title: string;
   content: string;
   commentsCount: number;
-  border?: string;
-  onEdit?: () => void;
-  onDelete?: () => void;
+  _id?: string;
 }
 
 const Post: React.FC<PostProps> = ({
-  userName,
-  community,
-  title,
-  content,
-  commentsCount,
+  post,
   border = " rounded-tl-[15px] rounded-tr-[15px]",
   onEdit,
   onDelete,
 }) => {
+  const { userName, community, title, content, commentsCount } = post;
   return (
     <div className={`border ${border} p-4 shadow-sm bg-white relative`}>
       {/* เพิ่มปุ่ม Edit และ Delete */}
@@ -33,7 +35,7 @@ const Post: React.FC<PostProps> = ({
         {onEdit && (
           <button
             type="button"
-            onClick={onEdit}
+            onClick={() => onEdit(post)}
             className="text-gray-600 hover:text-gray-800 focus:outline-none"
             aria-label="Edit"
           >

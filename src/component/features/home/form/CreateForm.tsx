@@ -12,7 +12,11 @@ import DownIcon from "@/component/icon/downIcon";
 import { OCommunity } from "@/utils/constants/option";
 import TextAreaInput from "@/component/Input/TextAreaInput";
 import { validationSchema } from "./validate";
-import { getPost, requestCreatePost, setModal } from "@/reduxs/home/homeSlice";
+import {
+  getPost,
+  requestCreatePost,
+  setModalCreate,
+} from "@/reduxs/home/homeSlice";
 import { EStatusCode } from "@/utils/constants/statusCode";
 import { apiCreatePost, apiGetPost } from "@/utils/api/api.constants";
 
@@ -59,7 +63,7 @@ const CreatePostForm = ({ onCancel }: { onCancel?: (value: any) => void }) => {
         );
         if (result.payload.status === EStatusCode.SUCESS) {
           dispatch(getPost({ ...apiGetPost }));
-          dispatch(setModal(false));
+          dispatch(setModalCreate(false));
         }
       }}
     >

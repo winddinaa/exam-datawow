@@ -10,7 +10,7 @@ import SelectInput from "@/component/Input/SelectInput";
 import DownIcon from "@/component/icon/downIcon";
 import Button from "@/component/common/Button";
 import Modal from "@/component/common/Modal";
-import { getPost, setModal } from "@/reduxs/home/homeSlice";
+import { getPost, setModalCreate } from "@/reduxs/home/homeSlice";
 import CreatePostForm from "./form/CreateForm";
 import { OCommunity } from "@/utils/constants/option";
 import Post from "@/component/content/Post";
@@ -24,12 +24,12 @@ const HomePage = () => {
   const homeReducer = useSelector((state: RootState) => state.home);
 
   const callGetPost = React.useCallback(async () => {
-    await dispatch(getPost({ ...apiGetPost }));
+    await dispatch(getPost({ ...apiGetPost({ params: {} }) }));
   }, []);
 
   const onCancel = useCallback(() => {
-    dispatch(setModal(false));
-  }, [dispatch, setModal]);
+    dispatch(setModalCreate(false));
+  }, [dispatch, setModalCreate]);
 
   React.useEffect(() => {
     callGetPost();
@@ -79,7 +79,7 @@ const HomePage = () => {
 
                 <Button
                   title="Create +"
-                  onClick={() => dispatch(setModal(true))}
+                  onClick={() => dispatch(setModalCreate(true))}
                 />
               </div>
             </div>
@@ -88,11 +88,13 @@ const HomePage = () => {
                 return (
                   <Post
                     key={itemPost._id}
-                    userName={itemPost.author.username}
-                    community={itemPost.community}
-                    title={itemPost.title}
-                    content={itemPost.content}
-                    commentsCount={itemPost.comments.length}
+                    post={{
+                      userName: itemPost.author.username,
+                      community: itemPost.community,
+                      title: itemPost.title,
+                      content: itemPost.content,
+                      commentsCount: itemPost.comments.length,
+                    }}
                     border={index > 0 ? "" : undefined}
                   />
                 );

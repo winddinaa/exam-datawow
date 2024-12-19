@@ -10,10 +10,11 @@ import SelectInput from "@/component/Input/SelectInput";
 import DownIcon from "@/component/icon/downIcon";
 import Button from "@/component/common/Button";
 import Modal from "@/component/common/Modal";
-import { getPost, setModal } from "@/reduxs/home/homeSlice";
-import CreatePostForm from "./form/CreateForm";
+import { getPost } from "@/reduxs/home/homeSlice";
 import { OCommunity } from "@/utils/constants/option";
 import Post from "@/component/content/Post";
+import UpdatePostForm from "./form/UpdateForm";
+import { setEditPost, setModalEdit } from "@/reduxs/ourBlog/ourBlogSlice";
 import { apiGetPost } from "@/utils/api/api.constants";
 
 const OurBlogPage = () => {
@@ -21,15 +22,31 @@ const OurBlogPage = () => {
   const isLargeScreen = useSelector(
     (state: RootState) => state.screenSize.isLargeScreen
   );
+  const ourReducer = useSelector((state: RootState) => state.our);
   const homeReducer = useSelector((state: RootState) => state.home);
 
   const callGetPost = React.useCallback(async () => {
-    await dispatch(getPost({ ...apiGetPost }));
+    await dispatch(getPost({ ...apiGetPost({ params: { isOur: true } }) }));
   }, []);
 
   const onCancel = useCallback(() => {
-    dispatch(setModal(false));
-  }, [dispatch, setModal]);
+    dispatch(setModalEdit(false));
+  }, [dispatch, setModalEdit]);
+
+  const onEdit = (e: any) => {
+    dispatch(
+      setEditPost({
+        openModal: true,
+        post: {
+          title: e.title,
+          content: e.content,
+          community: e.community,
+          _id: e._id,
+        },
+      })
+    );
+    console.log("=>e", e);
+  };
 
   React.useEffect(() => {
     callGetPost();
@@ -45,8 +62,8 @@ const OurBlogPage = () => {
         {() => (
           <Form>
             <div className="flex  items-center gap-3">
-              <Modal open={homeReducer.openModal} onClose={onCancel}>
-                <CreatePostForm onCancel={onCancel} />
+              <Modal open={ourReducer.openModal} onClose={onCancel}>
+                <UpdatePostForm onCancel={onCancel} />
               </Modal>
 
               <div
@@ -79,7 +96,7 @@ const OurBlogPage = () => {
 
                 <Button
                   title="Create +"
-                  onClick={() => dispatch(setModal(true))}
+                  onClick={() => dispatch(setModalEdit(true))}
                 />
               </div>
             </div>
@@ -88,12 +105,16 @@ const OurBlogPage = () => {
                 return (
                   <Post
                     key={itemPost._id}
-                    userName={itemPost.author.username}
-                    community={itemPost.community}
-                    title={itemPost.title}
-                    content={itemPost.content}
-                    commentsCount={itemPost.comments.length}
+                    post={{
+                      userName: itemPost.author.username,
+                      community: itemPost.community,
+                      title: itemPost.title,
+                      content: itemPost.content,
+                      commentsCount: itemPost.comments.length,
+                      _id: itemPost._id,
+                    }}
                     border={index > 0 ? "" : undefined}
+                    onEdit={onEdit}
                   />
                 );
               })}

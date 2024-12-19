@@ -57,7 +57,7 @@ const homeSlice = createSlice({
   name: "home",
   initialState,
   reducers: {
-    setModal(state, action: PayloadAction<boolean>) {
+    setModalCreate(state, action: PayloadAction<boolean>) {
       state.openModal = action.payload;
     },
   },
@@ -88,5 +88,5 @@ const homeSlice = createSlice({
   },
 });
 
-export const { setModal } = homeSlice.actions;
+export const { setModalCreate } = homeSlice.actions;
 export default homeSlice.reducer;
