@@ -1,6 +1,5 @@
 import Modal from "@/component/common/Modal";
 import React, { useCallback } from "react";
-import CreatePostForm from "./CreateForm";
 import SearchIcon from "@/component/icon/searchIcon";
 import SelectInput from "@/component/Input/SelectInput";
 import DownIcon from "@/component/icon/downIcon";
@@ -12,6 +11,7 @@ import { setModalCreate } from "@/reduxs/home/homeSlice";
 import TextInput from "@/component/Input/TextInput";
 import { Form, Formik } from "formik";
 import Button from "@/component/common/Button";
+import CreatePostForm from "./CreatePostForm";
 
 const TopSection = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -33,10 +33,7 @@ const TopSection = () => {
       {() => (
         <Form>
           <div className="flex  items-center gap-3">
-            <Modal open={homeReducer.openModal} onClose={onCancel}>
-              <CreatePostForm onCancel={onCancel} />
-            </Modal>
-
+            <CreatePostForm onCancel={onCancel} />
             <div
               className={`flex-1 ${isLargeScreen ? " max-w-[80%]" : "justify-between  max-w-[20%]"}`}
             >

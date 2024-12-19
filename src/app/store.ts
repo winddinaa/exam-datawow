@@ -4,6 +4,7 @@ import authReducer from "../reduxs/auth/authSlice";
 import homeReducer from "../reduxs/home/homeSlice";
 import pageReducer from "../reduxs/page/pageSlice";
 import ourBlogReducer from "../reduxs/ourBlog/ourBlogSlice";
+import modalCreatePostReducer from "../reduxs/modalCreatePost/modalCreatePostSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     home: homeReducer,
     page: pageReducer,
     our: ourBlogReducer,
+    createPost: modalCreatePostReducer,
   },
 });
 

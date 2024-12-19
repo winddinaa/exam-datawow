@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useCallback } from "react";
-import { Formik, Form } from "formik";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/app/store";
-import { getPost, setModalCreate } from "@/reduxs/home/homeSlice";
+import { getPost } from "@/reduxs/home/homeSlice";
 import Post from "@/component/content/Post";
 import { apiGetPost } from "@/utils/api/api.constants";
 import TopSection from "../common/TopSection";
