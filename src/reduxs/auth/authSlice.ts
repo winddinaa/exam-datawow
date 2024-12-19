@@ -1,4 +1,3 @@
-// screenSizeSlice.ts
 import { apiRequest } from "@/utils/api/api";
 import { IoptionAPI } from "@/utils/api/api.interface";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";

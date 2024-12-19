@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import React from "react";
+import EditPostIcon from "../icon/editPostIcon";
+import DeleteIcon from "../icon/deleteIcon";
 
 interface PostProps {
   userName: string;
@@ -10,6 +12,8 @@ interface PostProps {
   content: string;
   commentsCount: number;
   border?: string;
+  onEdit?: () => void;
+  onDelete?: () => void;
 }
 
 const Post: React.FC<PostProps> = ({
@@ -18,16 +22,43 @@ const Post: React.FC<PostProps> = ({
   title,
   content,
   commentsCount,
-  border = "border rounded-tl-[15px] rounded-tr-[15px]",
+  border = " rounded-tl-[15px] rounded-tr-[15px]",
+  onEdit,
+  onDelete,
 }) => {
   return (
-    <div className={`${border} p-4 shadow-sm bg-white`}>
+    <div className={`border ${border} p-4 shadow-sm bg-white relative`}>
+      {/* เพิ่มปุ่ม Edit และ Delete */}
+      <div className="absolute top-2 right-2 flex space-x-2">
+        {onEdit && (
+          <button
+            type="button"
+            onClick={onEdit}
+            className="text-gray-600 hover:text-gray-800 focus:outline-none"
+            aria-label="Edit"
+          >
+            <EditPostIcon />
+          </button>
+        )}
+        {onDelete && (
+          <button
+            type="button"
+            onClick={onDelete}
+            className="text-gray-600 hover:text-gray-800 focus:outline-none"
+            aria-label="Delete"
+          >
+            <DeleteIcon />
+          </button>
+        )}
+      </div>
+
+      {/* ส่วนเนื้อหา */}
       <div className="flex items-center space-x-3 mb-2">
         <Image
           className="inline-block size-10 rounded-full "
           src="/Avatar.svg"
-          width={1}
-          height={1}
+          width={40}
+          height={40}
           alt=""
         />
         <h3 className="text-gray-700 font-semibold">{userName}</h3>
