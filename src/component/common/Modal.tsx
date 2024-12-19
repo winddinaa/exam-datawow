@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
-import CloseIcon from "../icon/closeIcon";
+import CloseIcon from "../icon/CloseIcon";
 
 interface ModalProps {
   children?: ReactNode;

@@ -1,33 +1,14 @@
 // screenSizeSlice.ts
 import { apiRequest } from "@/utils/api/api";
 import { IoptionAPI } from "@/utils/api/api.interface";
+import { IPost } from "@/utils/interface/post.interface";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface HomeState {
   openModal: boolean;
   loading: boolean;
   error: any;
-  post: Post[];
-}
-
-interface Author {
-  _id: string;
-  username: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
-
-interface Post {
-  _id: string;
-  title: string;
-  content: string;
-  author: Author;
-  comments: Comment[];
-  community: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
+  post: IPost[];
 }
 
 const initialState: HomeState = {

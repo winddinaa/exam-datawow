@@ -7,6 +7,9 @@ import { getPost } from "@/reduxs/home/homeSlice";
 import Post from "@/component/content/Post";
 import { apiGetPost } from "@/utils/api/api.constants";
 import TopSection from "../common/TopSection";
+import { setPostDetail } from "@/reduxs/postDetail/postDetailSlice";
+import { setPage } from "@/reduxs/page/pageSlice";
+import { EPage } from "@/utils/constants/common";
 
 const HomePage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -25,21 +28,27 @@ const HomePage = () => {
   return (
     <div className="min-h-screen">
       <TopSection />
-
       <div className="mt-6">
         {homeReducer.post.map((itemPost, index) => {
           return (
-            <Post
-              key={itemPost._id}
-              post={{
-                userName: itemPost.author.username,
-                community: itemPost.community,
-                title: itemPost.title,
-                content: itemPost.content,
-                commentsCount: itemPost.comments.length,
+            <div
+              onClick={() => {
+                dispatch(setPostDetail(itemPost));
+                dispatch(setPage(EPage.POST_DETAIL));
               }}
-              border={index > 0 ? "" : undefined}
-            />
+              key={itemPost._id}
+            >
+              <Post
+                post={{
+                  userName: itemPost.author.username,
+                  community: itemPost.community,
+                  title: itemPost.title,
+                  content: itemPost.content,
+                  commentsCount: itemPost.comments.length,
+                }}
+                border={index > 0 ? "" : undefined}
+              />
+            </div>
           );
         })}
       </div>

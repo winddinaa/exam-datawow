@@ -2,8 +2,11 @@
 
 import Image from "next/image";
 import React from "react";
-import EditPostIcon from "../icon/editPostIcon";
-import DeleteIcon from "../icon/deleteIcon";
+import { AppDispatch } from "@/app/store";
+import { useDispatch } from "react-redux";
+import { setPostDetail } from "@/reduxs/postDetail/postDetailSlice";
+import DeleteIcon from "../icon/DeleteIcon";
+import EditPostIcon from "../icon/EditPostIcon";
 
 interface PostProps {
   post: Post;
@@ -27,7 +30,9 @@ const Post: React.FC<PostProps> = ({
   onEdit,
   onDelete,
 }) => {
+  const dispatch = useDispatch<AppDispatch>();
   const { userName, community, title, content, commentsCount } = post;
+
   return (
     <div className={`border ${border} p-4 shadow-sm bg-white relative`}>
       <div className="absolute top-4 right-4 flex space-x-2">

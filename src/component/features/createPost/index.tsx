@@ -8,7 +8,6 @@ import Button from "@/component/common/Button";
 import { AppDispatch, RootState } from "@/app/store";
 import TextInput from "@/component/Input/TextInput";
 import SelectInput from "@/component/Input/SelectInput";
-import DownIcon from "@/component/icon/downIcon";
 import { OCommunity } from "@/utils/constants/option";
 import TextAreaInput from "@/component/Input/TextAreaInput";
 import { validationCreateSchema } from "./create.yup";
@@ -21,6 +20,7 @@ import { EStatusCode } from "@/utils/constants/statusCode";
 import { apiCreatePost, apiGetPost } from "@/utils/api/api.constants";
 import { EPage } from "@/utils/constants/common";
 import Modal from "@/component/common/Modal";
+import DownIcon from "@/component/icon/DownIcon";
 
 const CreatePostForm = ({ onCancel }: { onCancel?: (value: any) => void }) => {
   const dispatch: AppDispatch = useDispatch();

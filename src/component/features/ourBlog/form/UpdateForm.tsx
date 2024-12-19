@@ -8,7 +8,7 @@ import Button from "@/component/common/Button";
 import { AppDispatch, RootState } from "@/app/store";
 import TextInput from "@/component/Input/TextInput";
 import SelectInput from "@/component/Input/SelectInput";
-import DownIcon from "@/component/icon/downIcon";
+import DownIcon from "@/component/icon/DownIcon";
 import { OCommunity } from "@/utils/constants/option";
 import TextAreaInput from "@/component/Input/TextAreaInput";
 import { validationSchema } from "./validate";

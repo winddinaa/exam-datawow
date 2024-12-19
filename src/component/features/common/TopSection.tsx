@@ -1,8 +1,6 @@
 import Modal from "@/component/common/Modal";
 import React, { useCallback } from "react";
-import SearchIcon from "@/component/icon/searchIcon";
 import SelectInput from "@/component/Input/SelectInput";
-import DownIcon from "@/component/icon/downIcon";
 import { OCommunity } from "@/utils/constants/option";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +10,8 @@ import TextInput from "@/component/Input/TextInput";
 import { Form, Formik } from "formik";
 import Button from "@/component/common/Button";
 import CreatePostForm from "../createPost";
+import DownIcon from "@/component/icon/DownIcon";
+import SearchIcon from "@/component/icon/SearchIcon";
 
 const TopSection = () => {
   const dispatch = useDispatch<AppDispatch>();
