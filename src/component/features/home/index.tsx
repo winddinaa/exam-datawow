@@ -27,6 +27,10 @@ const HomePage = () => {
     await dispatch(getPost({ ...apiGetPost }));
   }, []);
 
+  const onCancel = useCallback(() => {
+    dispatch(setModal(false));
+  }, [dispatch, setModal]);
+
   React.useEffect(() => {
     callGetPost();
     return () => {};
@@ -41,8 +45,8 @@ const HomePage = () => {
         {() => (
           <Form>
             <div className="flex  items-center gap-3">
-              <Modal open={homeReducer.openModal}>
-                <CreatePostForm />
+              <Modal open={homeReducer.openModal} onClose={onCancel}>
+                <CreatePostForm onCancel={onCancel} />
               </Modal>
 
               <div

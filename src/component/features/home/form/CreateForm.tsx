@@ -16,7 +16,7 @@ import { getPost, requestCreatePost, setModal } from "@/reduxs/home/homeSlice";
 import { EStatusCode } from "@/utils/constants/statusCode";
 import { apiCreatePost, apiGetPost } from "@/utils/api/api.constants";
 
-const CreatePostForm = () => {
+const CreatePostForm = ({ onCancel }: { onCancel?: (value: any) => void }) => {
   const dispatch: AppDispatch = useDispatch();
   const filedCreate = useMemo(
     () => [
@@ -73,7 +73,13 @@ const CreatePostForm = () => {
               <Component key={rest.name} values={values.community} {...rest} />
             ))}
             <div className="flex flex-col sm:flex-row justify-end gap-4 w-full">
-              <Button title="Cancel" outline className="w-full sm:w-auto" />
+              <Button
+                title="Cancel"
+                type="button"
+                outline
+                onClick={onCancel}
+                className="w-full sm:w-auto"
+              />
               <Button type="submit" title="Post" className="w-full sm:w-auto" />
             </div>
           </div>

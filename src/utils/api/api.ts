@@ -22,7 +22,11 @@ export const apiRequest = async (option: IoptionAPI) => {
 
     const response = await apiClient(option);
     return response.data;
-  } catch (error) {
+  } catch (error: any) {
+    if (error && error.status) {
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+    }
     throw new Error(`Error with ${option.method} request: ${error}`);
   }
 };
