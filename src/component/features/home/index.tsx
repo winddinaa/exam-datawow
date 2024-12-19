@@ -84,7 +84,7 @@ const HomePage = () => {
               </div>
             </div>
             <div className="mt-6">
-              {homeReducer.post.map((itemPost) => {
+              {homeReducer.post.map((itemPost, index) => {
                 return (
                   <Post
                     key={itemPost._id}
@@ -93,6 +93,7 @@ const HomePage = () => {
                     title={itemPost.title}
                     content={itemPost.content}
                     commentsCount={itemPost.comments.length}
+                    border={index > 0 ? "" : undefined}
                   />
                 );
               })}

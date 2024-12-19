@@ -9,6 +9,7 @@ interface PostProps {
   title: string;
   content: string;
   commentsCount: number;
+  border?: string;
 }
 
 const Post: React.FC<PostProps> = ({
@@ -17,9 +18,10 @@ const Post: React.FC<PostProps> = ({
   title,
   content,
   commentsCount,
+  border = "border rounded-tl-[15px] rounded-tr-[15px]",
 }) => {
   return (
-    <div className="border rounded-lg p-4 shadow-sm bg-white">
+    <div className={`${border} p-4 shadow-sm bg-white`}>
       <div className="flex items-center space-x-3 mb-2">
         <Image
           className="inline-block size-10 rounded-full "
