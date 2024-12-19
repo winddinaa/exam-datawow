@@ -23,7 +23,11 @@ const LayoutComponent = ({
       {isLargeScreen ? <NavBar /> : <NavBarMobile />}
       <div
         className={`flex flex-row bg-brand-grey-100 h-full ${
-          isLargeScreen ? "px-0" : "px-[1%]"
+          isLargeScreen
+            ? "px-0"
+            : page.page === EPage.POST_DETAIL
+              ? "px-0"
+              : "px-[1%]"
         } `}
       >
         {isLargeScreen && (
@@ -33,7 +37,7 @@ const LayoutComponent = ({
         )}
 
         <div
-          className={`${isLargeScreen ? (page.page === EPage.POST_DETAIL ? "w-full" : "w-4/6  px-4 pt-8") : "w-full  px-4 pt-8"}  `}
+          className={`${isLargeScreen ? (page.page === EPage.POST_DETAIL ? "w-full" : "w-4/6  px-4 pt-8") : page.page === EPage.POST_DETAIL ? "w-full " : "w-full  px-4 pt-8"}  `}
         >
           {children}
         </div>
