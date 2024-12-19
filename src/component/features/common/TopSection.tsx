@@ -11,7 +11,7 @@ import { setModalCreate } from "@/reduxs/home/homeSlice";
 import TextInput from "@/component/Input/TextInput";
 import { Form, Formik } from "formik";
 import Button from "@/component/common/Button";
-import CreatePostForm from "./CreatePostForm";
+import CreatePostForm from "../createPost";
 
 const TopSection = () => {
   const dispatch = useDispatch<AppDispatch>();

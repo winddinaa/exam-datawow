@@ -25,6 +25,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen">
       <TopSection />
+
       <div className="mt-6">
         {homeReducer.post.map((itemPost, index) => {
           return (
