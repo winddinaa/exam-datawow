@@ -1,12 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
-import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  DialogTitle,
-} from "@headlessui/react";
+import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
 import CloseIcon from "../icon/closeIcon";
@@ -16,6 +11,7 @@ interface ModalProps {
   open: boolean;
   onClose?: (value: boolean) => void;
   showCloseIcon?: boolean;
+  width?: string;
 }
 
 const Modal = ({
@@ -23,6 +19,7 @@ const Modal = ({
   onClose = () => {},
   showCloseIcon = true,
   children,
+  width = "min-w-[685px]",
 }: ModalProps) => {
   const isLargeScreen = useSelector(
     (state: RootState) => state.screenSize.isLargeScreen
@@ -40,7 +37,7 @@ const Modal = ({
           <DialogPanel
             transition
             className={`relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-lg data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95
-            ${isLargeScreen ? "sm:min-w-[685px] " : "w-[98vw] "}`}
+            ${isLargeScreen ? `sm:${width} ` : "w-[98vw] "}`}
           >
             {showCloseIcon && (
               <button

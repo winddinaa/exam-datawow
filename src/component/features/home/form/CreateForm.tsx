@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useMemo } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form } from "formik";
 
 import Button from "@/component/common/Button";
-import { AppDispatch } from "@/app/store";
+import { AppDispatch, RootState } from "@/app/store";
 import TextInput from "@/component/Input/TextInput";
 import SelectInput from "@/component/Input/SelectInput";
 import DownIcon from "@/component/icon/downIcon";
@@ -19,9 +19,11 @@ import {
 } from "@/reduxs/home/homeSlice";
 import { EStatusCode } from "@/utils/constants/statusCode";
 import { apiCreatePost, apiGetPost } from "@/utils/api/api.constants";
+import { EPage } from "@/utils/constants/common";
 
 const CreatePostForm = ({ onCancel }: { onCancel?: (value: any) => void }) => {
   const dispatch: AppDispatch = useDispatch();
+  const pageReducer = useSelector((state: RootState) => state.page);
   const filedCreate = useMemo(
     () => [
       {
@@ -62,7 +64,15 @@ const CreatePostForm = ({ onCancel }: { onCancel?: (value: any) => void }) => {
           requestCreatePost({ ...apiCreatePost, data: values })
         );
         if (result.payload.status === EStatusCode.SUCESS) {
-          dispatch(getPost({ ...apiGetPost }));
+          await dispatch(
+            getPost({
+              ...apiGetPost({
+                params: {
+                  ...(pageReducer.page === EPage.OUR_BLOG && { isOur: true }),
+                },
+              }),
+            })
+          );
           dispatch(setModalCreate(false));
         }
       }}

@@ -9,7 +9,7 @@ interface PostProps {
   post: Post;
   border?: string;
   onEdit?: (e: any) => void;
-  onDelete?: () => void;
+  onDelete?: (e: any) => void;
 }
 
 interface Post {
@@ -30,8 +30,7 @@ const Post: React.FC<PostProps> = ({
   const { userName, community, title, content, commentsCount } = post;
   return (
     <div className={`border ${border} p-4 shadow-sm bg-white relative`}>
-      {/* เพิ่มปุ่ม Edit และ Delete */}
-      <div className="absolute top-2 right-2 flex space-x-2">
+      <div className="absolute top-4 right-4 flex space-x-2">
         {onEdit && (
           <button
             type="button"
@@ -45,7 +44,7 @@ const Post: React.FC<PostProps> = ({
         {onDelete && (
           <button
             type="button"
-            onClick={onDelete}
+            onClick={() => onDelete(post)}
             className="text-gray-600 hover:text-gray-800 focus:outline-none"
             aria-label="Delete"
           >
@@ -54,7 +53,6 @@ const Post: React.FC<PostProps> = ({
         )}
       </div>
 
-      {/* ส่วนเนื้อหา */}
       <div className="flex items-center space-x-3 mb-2">
         <Image
           className="inline-block size-10 rounded-full "

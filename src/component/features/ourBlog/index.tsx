@@ -10,12 +10,19 @@ import SelectInput from "@/component/Input/SelectInput";
 import DownIcon from "@/component/icon/downIcon";
 import Button from "@/component/common/Button";
 import Modal from "@/component/common/Modal";
-import { getPost } from "@/reduxs/home/homeSlice";
+import { getPost, setModalCreate } from "@/reduxs/home/homeSlice";
 import { OCommunity } from "@/utils/constants/option";
 import Post from "@/component/content/Post";
 import UpdatePostForm from "./form/UpdateForm";
-import { setEditPost, setModalEdit } from "@/reduxs/ourBlog/ourBlogSlice";
+import {
+  setDeletePost,
+  setEditPost,
+  setModalConfirmDelete,
+  setModalEdit,
+} from "@/reduxs/ourBlog/ourBlogSlice";
 import { apiGetPost } from "@/utils/api/api.constants";
+import ConfirmDeleteModal from "./form/ConfirmDelet";
+import CreatePostForm from "../home/form/CreateForm";
 
 const OurBlogPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -29,8 +36,16 @@ const OurBlogPage = () => {
     await dispatch(getPost({ ...apiGetPost({ params: { isOur: true } }) }));
   }, []);
 
-  const onCancel = useCallback(() => {
+  const onCancelEdit = useCallback(() => {
     dispatch(setModalEdit(false));
+  }, [dispatch, setModalEdit]);
+
+  const onCancelCreate = useCallback(() => {
+    dispatch(setModalEdit(false));
+  }, [dispatch, setModalEdit]);
+
+  const onCancelDelete = useCallback(() => {
+    dispatch(setModalConfirmDelete(false));
   }, [dispatch, setModalEdit]);
 
   const onEdit = (e: any) => {
@@ -45,7 +60,11 @@ const OurBlogPage = () => {
         },
       })
     );
-    console.log("=>e", e);
+  };
+
+  const onDelete = (e: any) => {
+    console.log("=> e", e);
+    dispatch(setDeletePost({ openModalConfirm: true, _idDelete: e._id }));
   };
 
   React.useEffect(() => {
@@ -62,10 +81,19 @@ const OurBlogPage = () => {
         {() => (
           <Form>
             <div className="flex  items-center gap-3">
-              <Modal open={ourReducer.openModal} onClose={onCancel}>
-                <UpdatePostForm onCancel={onCancel} />
+              <Modal open={ourReducer.openModal} onClose={onCancelEdit}>
+                <UpdatePostForm onCancel={onCancelEdit} />
               </Modal>
-
+              <Modal open={homeReducer.openModal} onClose={onCancelCreate}>
+                <CreatePostForm onCancel={onCancelCreate} />
+              </Modal>
+              <Modal
+                open={ourReducer.openModalConfirm}
+                onClose={onCancelDelete}
+                width="min-w-[400px]"
+              >
+                <ConfirmDeleteModal onCancel={onCancelDelete} />
+              </Modal>
               <div
                 className={`flex-1 ${isLargeScreen ? " max-w-[80%]" : "justify-between  max-w-[20%]"}`}
               >
@@ -96,7 +124,7 @@ const OurBlogPage = () => {
 
                 <Button
                   title="Create +"
-                  onClick={() => dispatch(setModalEdit(true))}
+                  onClick={() => dispatch(setModalCreate(true))}
                 />
               </div>
             </div>
@@ -113,8 +141,15 @@ const OurBlogPage = () => {
                       commentsCount: itemPost.comments.length,
                       _id: itemPost._id,
                     }}
-                    border={index > 0 ? "" : undefined}
+                    border={
+                      index === 0
+                        ? undefined
+                        : index === homeReducer.post.length - 1
+                          ? "rounded-bl-[15px] rounded-br-[15px]"
+                          : undefined
+                    }
                     onEdit={onEdit}
+                    onDelete={onDelete}
                   />
                 );
               })}

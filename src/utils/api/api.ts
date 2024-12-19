@@ -23,7 +23,7 @@ export const apiRequest = async (option: IoptionAPI) => {
     const response = await apiClient(option);
     return response.data;
   } catch (error: any) {
-    if (error && error.status) {
+    if (error && error.status == 401) {
       localStorage.removeItem("token");
       window.location.href = "/login";
     }

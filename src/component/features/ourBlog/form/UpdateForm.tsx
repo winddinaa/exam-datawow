@@ -64,7 +64,9 @@ const UpdatePostForm = ({ onCancel }: { onCancel?: (value: any) => void }) => {
           })
         );
         if (result.payload.status === EStatusCode.SUCESS) {
-          dispatch(getPost({ ...apiGetPost({ params: { isOur: true } }) }));
+          await dispatch(
+            getPost({ ...apiGetPost({ params: { isOur: true } }) })
+          );
           dispatch(setModalEdit(false));
         }
       }}

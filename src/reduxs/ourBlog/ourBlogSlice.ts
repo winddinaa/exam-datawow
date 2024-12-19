@@ -5,9 +5,11 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface OurBlogState {
   openModal: boolean;
+  openModalConfirm: boolean;
   loading: boolean;
   error: any;
   editPostTemp: Post;
+  _idDelete: string;
 }
 
 interface Post {
@@ -19,8 +21,10 @@ interface Post {
 
 const initialState: OurBlogState = {
   openModal: false,
+  openModalConfirm: false,
   loading: false,
   error: "",
+  _idDelete: "",
   editPostTemp: {
     title: "",
     content: "",
@@ -37,6 +41,14 @@ export const requestEditPost = createAsyncThunk(
   }
 );
 
+export const requestDeletePost = createAsyncThunk(
+  "api/requestDeletePost",
+  async (option: IoptionAPI) => {
+    const data = await apiRequest(option);
+    return data;
+  }
+);
+
 const ourBlogSlice = createSlice({
   name: "ourBlog",
   initialState,
@@ -44,12 +56,22 @@ const ourBlogSlice = createSlice({
     setModalEdit(state, action: PayloadAction<boolean>) {
       state.openModal = action.payload;
     },
+    setModalConfirmDelete(state, action: PayloadAction<boolean>) {
+      state.openModalConfirm = action.payload;
+    },
     setEditPost(
       state,
       action: PayloadAction<{ openModal: boolean; post: Post }>
     ) {
       state.openModal = action.payload.openModal;
       state.editPostTemp = action.payload.post;
+    },
+    setDeletePost(
+      state,
+      action: PayloadAction<{ openModalConfirm: boolean; _idDelete: string }>
+    ) {
+      state.openModalConfirm = action.payload.openModalConfirm;
+      state._idDelete = action.payload._idDelete;
     },
   },
   extraReducers: (builder) => {
@@ -63,9 +85,24 @@ const ourBlogSlice = createSlice({
       .addCase(requestEditPost.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      .addCase(requestDeletePost.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(requestDeletePost.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(requestDeletePost.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
   },
 });
 
-export const { setEditPost, setModalEdit } = ourBlogSlice.actions;
+export const {
+  setEditPost,
+  setModalEdit,
+  setModalConfirmDelete,
+  setDeletePost,
+} = ourBlogSlice.actions;
 export default ourBlogSlice.reducer;

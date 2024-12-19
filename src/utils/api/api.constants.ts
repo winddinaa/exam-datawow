@@ -15,6 +15,11 @@ export const apiCreatePost: IoptionAPI = {
   isAuth: true,
 };
 
+export const apiDeletePost: IoptionAPI = {
+  method: "DELETE",
+  url: "posts",
+  isAuth: true,
+};
 export const apiUpdatePost: IoptionAPI = {
   method: "put",
   url: "posts",
