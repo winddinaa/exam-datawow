@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-export const validationSchema = Yup.object({
+export const validationCreateSchema = Yup.object({
   community: Yup.string()
     .notOneOf(["Choose a community"], "Please select a community")
     .required("Community is required"),

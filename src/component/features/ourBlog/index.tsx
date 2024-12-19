@@ -22,7 +22,7 @@ import {
 } from "@/reduxs/ourBlog/ourBlogSlice";
 import { apiGetPost } from "@/utils/api/api.constants";
 import ConfirmDeleteModal from "./form/ConfirmDelet";
-import CreatePostForm from "../home/form/CreateForm";
+import CreatePostForm from "../common/CreateForm";
 
 const OurBlogPage = () => {
   const dispatch = useDispatch<AppDispatch>();

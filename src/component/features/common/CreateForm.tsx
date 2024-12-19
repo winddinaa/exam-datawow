@@ -11,7 +11,7 @@ import SelectInput from "@/component/Input/SelectInput";
 import DownIcon from "@/component/icon/downIcon";
 import { OCommunity } from "@/utils/constants/option";
 import TextAreaInput from "@/component/Input/TextAreaInput";
-import { validationSchema } from "./validate";
+import { validationCreateSchema } from "./create.yup";
 import {
   getPost,
   requestCreatePost,
@@ -58,7 +58,7 @@ const CreatePostForm = ({ onCancel }: { onCancel?: (value: any) => void }) => {
   return (
     <Formik
       initialValues={{ title: "", community: undefined, content: "" }}
-      validationSchema={validationSchema}
+      validationSchema={validationCreateSchema}
       onSubmit={async (values) => {
         const result = await dispatch(
           requestCreatePost({ ...apiCreatePost, data: values })
