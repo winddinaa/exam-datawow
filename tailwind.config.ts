@@ -29,6 +29,9 @@ export default {
             text: "#191919",
           },
           success: "#49A569",
+          textSpecial: {
+            contentTitle: "#101828",
+          },
         },
       },
       fontFamily: {

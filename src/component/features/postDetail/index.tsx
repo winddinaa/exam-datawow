@@ -55,10 +55,12 @@ const PostDetails = () => {
       </span>
       {/* Post Title */}
       <div className="mb-6 mt-2">
-        <p className="font-inter text-xl font-bold ">
+        <p className="font-inter text-xl font-bold text-brand-textSpecial-contentTitle">
           {postDetailReducer.title}
         </p>
-        <p className="font-inter mt-2 ">{postDetailReducer.content}</p>
+        <p className="font-inter mt-2 text-brand-base-text ">
+          {postDetailReducer.content}
+        </p>
       </div>
 
       {/* Comment Count */}
