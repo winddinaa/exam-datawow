@@ -1,16 +1,21 @@
 "use client";
 
-import { RootState } from "@/app/store";
+import { AppDispatch, RootState } from "@/app/store";
 import SpeakIcon from "@/component/icon/SpeakIcon";
 import dayjs from "@/utils/dayjs";
 import Image from "next/image";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Comment from "../comment";
+import Button from "@/component/common/Button";
+import { setOpenComment } from "@/reduxs/comment/commentSlice";
 
 const PostDetails = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const postDetailReducer = useSelector(
     (state: RootState) => state.postDetail.postDetail
   );
-  console.log("=> postDetailReducer", postDetailReducer);
+  const commentReducer = useSelector((state: RootState) => state.comment);
+  console.log("=> commentReducer", commentReducer);
   return (
     <div className=" px-8 py-8   bg-brand-base-white">
       <div className="flex items-center gap-4 mb-6">
@@ -63,20 +68,23 @@ const PostDetails = () => {
         </p>
       </div>
 
-      {/* Comment Count */}
       <div className="flex items-center mb-4">
         <SpeakIcon />
         <p className="ml-2 text-gray-600 text-sm">32 Comments</p>
       </div>
 
-      {/* Add Comment Button */}
-      <div className="mb-8">
-        <button className="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700">
-          Add Comments
-        </button>
-      </div>
+      {commentReducer.isComment ? (
+        <Comment />
+      ) : (
+        <div className="mb-8">
+          <Button
+            outline
+            title=" Add Comments"
+            onClick={() => dispatch(setOpenComment(true))}
+          />
+        </div>
+      )}
 
-      {/* Comments */}
       <div className="space-y-6">
         {[
           {

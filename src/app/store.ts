@@ -6,6 +6,7 @@ import pageReducer from "../reduxs/page/pageSlice";
 import ourBlogReducer from "../reduxs/ourBlog/ourBlogSlice";
 import modalCreatePostReducer from "../reduxs/modalCreatePost/modalCreatePostSlice";
 import postDetailReducer from "../reduxs/postDetail/postDetailSlice";
+import commentReducer from "../reduxs/comment/commentSlice";
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     our: ourBlogReducer,
     createPost: modalCreatePostReducer,
     postDetail: postDetailReducer,
+    comment: commentReducer,
   },
 });
 
