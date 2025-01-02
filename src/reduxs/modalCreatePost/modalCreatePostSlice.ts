@@ -18,6 +18,7 @@ export const requestCreatePost = createAsyncThunk(
   "api/requestCreatePost",
   async (option: IoptionAPI) => {
     const data = await apiRequest(option);
+
     return data;
   }
 );

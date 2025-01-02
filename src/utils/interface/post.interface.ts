@@ -4,9 +4,11 @@ interface IAuthor {
 }
 
 interface IComment {
-  author: string;
+  author: IAuthor;
   post: string;
   text: string;
+  _id: string;
+  updatedAt: Date;
 }
 
 export interface IPost {

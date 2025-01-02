@@ -30,3 +30,9 @@ export const apiLogin: IoptionAPI = {
   method: "POST",
   url: "users/login",
 };
+
+export const apiCreateComment: IoptionAPI = {
+  method: "POST",
+  url: "comments",
+  isAuth: true,
+};

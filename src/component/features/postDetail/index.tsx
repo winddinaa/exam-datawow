@@ -15,7 +15,6 @@ const PostDetails = () => {
     (state: RootState) => state.postDetail.postDetail
   );
   const commentReducer = useSelector((state: RootState) => state.comment);
-  console.log("=> commentReducer", commentReducer);
   return (
     <div className=" px-8 py-8   bg-brand-base-white">
       <div className="flex items-center gap-4 mb-6">
@@ -86,33 +85,8 @@ const PostDetails = () => {
       )}
 
       <div className="space-y-6">
-        {[
-          {
-            id: 1,
-            name: "Wittawat98",
-            time: "12h ago",
-            text: "Lorem ipsum dolor sit amet consectetur.",
-          },
-          {
-            id: 2,
-            name: "Hawaii51",
-            time: "1mo. ago",
-            text: "Purus cursus vel at a pretium quam imperdiet.",
-          },
-          {
-            id: 3,
-            name: "Helo_re",
-            time: "3mo. ago",
-            text: "Tristique auctor sed semper nibh odio laoreet.",
-          },
-          {
-            id: 4,
-            name: "Azc123",
-            time: "4mo. ago",
-            text: "Amet mollis eget morbi feugiat nisi fusce.",
-          },
-        ].map((comment) => (
-          <div key={comment.id} className="flex gap-4">
+        {postDetailReducer.comments.map((comment) => (
+          <div key={comment._id} className="flex gap-4">
             <Image
               className="inline-block size-10 rounded-full "
               src="/Avatar.svg"
@@ -122,9 +96,11 @@ const PostDetails = () => {
             />
             <div>
               <p className="text-sm font-medium text-gray-800">
-                {comment.name}
+                {comment.author.username}
               </p>
-              <p className="text-xs text-gray-500">{comment.time}</p>
+              <p className="text-xs text-gray-500">
+                {dayjs(comment.updatedAt).fromNow()}
+              </p>
               <p className="text-sm text-gray-700 mt-1">{comment.text}</p>
             </div>
           </div>
