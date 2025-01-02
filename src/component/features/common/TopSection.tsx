@@ -26,7 +26,10 @@ const TopSection = () => {
   }, [dispatch, setModalCreate]);
 
   return (
-    <Formik initialValues={{ search: "" }}>
+    <Formik
+      initialValues={{ search: "" }}
+      onSubmit={(values) => console.log(values)}
+    >
       {() => (
         <Form>
           <div className="flex  items-center gap-3">
