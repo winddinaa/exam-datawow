@@ -2,6 +2,7 @@ import React from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   outline?: boolean;
+  title?: any;
 }
 
 const Button: React.FC<ButtonProps> = ({

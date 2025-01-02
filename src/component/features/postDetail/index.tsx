@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Comment from "../comment";
 import Button from "@/component/common/Button";
 import { setOpenComment } from "@/reduxs/comment/commentSlice";
+import { setBack } from "@/reduxs/page/pageSlice";
 
 const PostDetails = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -16,9 +17,12 @@ const PostDetails = () => {
   );
   const commentReducer = useSelector((state: RootState) => state.comment);
   return (
-    <div className=" px-8 py-8   bg-brand-base-white">
+    <div className=" px-8 py-8  min-h-screen   bg-brand-base-white">
       <div className="flex items-center gap-4 mb-6">
-        <button className="rounded-full bg-gray-200 p-2 hover:bg-gray-300">
+        <button
+          className="rounded-full bg-gray-200 p-2 hover:bg-gray-300"
+          onClick={() => dispatch(setBack())}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 text-gray-600"
@@ -69,7 +73,9 @@ const PostDetails = () => {
 
       <div className="flex items-center mb-4">
         <SpeakIcon />
-        <p className="ml-2 text-gray-600 text-sm">32 Comments</p>
+        <p className="ml-2 text-gray-600 text-sm">
+          {postDetailReducer.comments.length} Comments
+        </p>
       </div>
 
       {commentReducer.isComment ? (
